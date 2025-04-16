@@ -1,0 +1,150 @@
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+}
+
+/* background-image: linear-gradient(to bottom, green, red, yellow); */
+body {
+    background-image: url("./images/background.jpg");
+    background-attachment: fixed;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+    line-height: 1.6;
+    color: Black;
+}
+
+section {
+    background-color: LightCyan;
+    border-color: #CCC #999 #999 #CCC;
+    margin-bottom: 20px;
+    padding: 10px;
+    min-width: 500px;
+    max-width: 600px;
+}
+
+#video {
+    min-width: 800px;
+    min-height: 540px;
+}
+
+iframe {
+    margin-top: 10px;
+}
+
+section p {
+    padding: 5px;
+    min-width: 500px;
+    max-width: 600px;
+    margin-bottom: 10px;
+}
+
+#sumerio {
+    border: 1px solid Black;
+    padding: 25px 25px 25px 30px;
+    max-width: 240px;
+    background-color:Azure;
+    margin: 10px auto 10px auto;
+    list-style-type: upper-roman;
+    list-style-position: inside;
+}
+
+section h2 {
+    margin: 0;
+}
+
+a {
+    color:CornflowerBlue;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.titulo {
+    border: 1px solid CornflowerBlue;
+    background-color: PowderBlue;
+    padding: 10px;
+}
+
+header {
+    margin-bottom: 2px;
+    margin-left: 40px;
+    padding: 10px;
+}
+
+header h1 a {
+    color:Black ;
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    background-color: DeepSkyBlue;
+    color: White;
+}
+
+section img {
+    border: 1px solid Black;
+    float: left;
+    margin: 10px 15px 0 0;
+    padding: 2px;
+    max-width: 280px;
+}
+
+aside {
+    background-color: Ivory;
+    float: right;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 260px;
+    height: 130;
+}
+
+#extra {
+    font-size: 14px;
+    margin-top: 0;
+    background-color: LightBlue;
+    padding: 10px;
+}
+
+#form {
+    margin-top: 0;
+    background-color: LightBlue;
+    padding: 10px;
+}
+
+aside ol {
+    font-size: 13px;
+}
+
+aside ul {
+    font-size: 16px;
+}
+
+main {
+    float: left;
+    width: 660px;
+}
+
+td {
+    padding: 10px 5px 10px 10px;	
+    border-top:1px solid Black;
+}
+
+th {
+    background-color: LightGrey;
+}
+
+table {
+    border: 1px solid Black;
+}
+
+#guerra {
+    background-color: Ivory;
+}
+
+#polaco {
+    background-color: Ivory;
+}
+
+form input:hover {
+    color: White;
+    background-color: Black;
+}
