@@ -5,6 +5,7 @@
 }
 
 /* background-image: linear-gradient(to bottom, green, red, yellow); */
+
 body {
     background-image: url("./images/background.jpg");
     background-attachment: fixed;
