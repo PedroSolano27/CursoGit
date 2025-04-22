@@ -1,0 +1,32 @@
+body {
+    margin-bottom: 1000px;
+}
+
+header{
+    padding: 10px;
+    background-color: lightgray;
+    margin-bottom: 10px;
+}
+
+#main-container{
+    padding: 10px;
+    background-color: darkgray;
+    margin-bottom: 10px;
+}
+
+footer{
+    padding: 10px;
+    background-color: gray;
+}
+
+#botoes{
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: lightblue;
+}
+
+#div-propagacao{
+    margin: 5px;
+    padding: 8px;
+    background-color: lightgreen;
+}
