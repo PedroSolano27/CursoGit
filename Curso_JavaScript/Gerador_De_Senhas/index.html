@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gerador De Senhas</title>
+
+        <!-- Fonte Externa -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div id="reg-container">
+            <header id="reg-banner">
+                <section id="banner-layer">
+                    <h1>Seja Bem-vindo</h1>
+                </section>
+            </header>
+    
+            <main id="reg-form">
+                <h2>Crie sua conta:</h2>
+                <p>Registre-se para utilizar o sistema</p>
+                
+                <section class="form-control">
+                    <label for="name">Nome</label>
+                    <input type="text" name="name" id="name" placeholder="Digite seu Nome">
+                </section>
+
+                <section class="form-control">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu Email">
+                </section>
+
+                <section class="form-control">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="password" placeholder="Digite sua senha">
+                    
+                </section>
+
+                <section>
+                    <p>Criar senha automaticamente: <span id="generate-password">Clique Aqui</span></p>
+
+                    <section id="gen-options" class="hide">
+                        <p>Selecione as opções que você deseja</p>
+
+                        <section class="form-control">
+                            <label for="length">Quantidade de caracteres:</label>
+                            <input type="text" id="length" name="length" value="10">
+                        </section>
+
+                        <section class="form-control">
+                            <label for="letters">Letras:</label>
+                            <input type="checkbox" name="letters" id="letters" checked>
+                        </section>
+
+                        <section class="form-control">
+                            <label for="numbers">Números:</label>
+                            <input type="checkbox" name="numbers" id="numbers" checked>
+                        </section>
+
+                        <section class="form-control">
+                            <label for="symbols">Símbolos:</label>
+                            <input type="checkbox" name="symbols" id="symbols" checked>
+                        </section>
+
+                        <button id="generate-btn">Gerar Senha</button>
+                    </section>
+
+                    <section id="generated-password">
+                        <p>Senha gerada:</p>
+                        <h4></h4>
+                        <button id="copy-btn">Copiar</button>
+                    </section>
+                </section>
+
+                <section class="form-control">
+                    <label for="confirm">Confirme a Senha</label>
+                    <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha">
+                </section>
+
+                <input type="submit" value="Cadastrar">
+            </main>
+        </div>
+    </body>
+</html>
