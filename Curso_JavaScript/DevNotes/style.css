@@ -1,0 +1,159 @@
+/* Reset */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* Geral */
+body {
+    background-color: #031a01;
+}
+
+
+/* Header */
+header {
+    border-bottom: 1px solid #cccccc;
+    padding: 1rem 2rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#search-input {
+    background-color: #525356;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    color: #dddddd;
+    width: 400px;
+}
+
+#search-input::placeholder {
+    color: #dddddd;
+}
+
+#export-btn {
+    background-color: #333333;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#export-btn:hover {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+/* Formulário */
+#add-note-container {
+    display: flex;
+    width: 400px;
+    margin: 1rem auto 0;
+    gap: 1rem;
+}
+
+#add-note-container input,
+#add-note-container button {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#add-note-container input {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #525356;
+    color: #ffffff;
+}
+
+#add-note-container button {
+    cursor: pointer;
+    background-color: #333333;
+    border: 1px solid #525356;
+    color: #ffffff;
+    transition: 0.4s;
+}
+
+#add-note-container button:hover {
+    background-color: #525356;
+    border: 1px solid #ffffff;
+}
+
+/* Notas */
+#notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.note {
+    min-height: 200px;
+    padding: 1rem;
+    border: 1px solid #cccccc;
+    background-color: #202124;
+    border-radius: 10px;
+    color: #ffffff;
+    position: relative;
+}
+
+.note:hover > i {
+    opacity: 1;
+}
+
+.note textarea {
+    background-color: transparent;
+    resize: none;
+    color: #ffffff;
+    border: none;
+    height: 100%;
+    outline: none;
+}
+
+.note .bi-pin {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.note .bi-x-lg,
+.note .bi-file-earmark-plus{
+    position: absolute;
+    right: 10px;
+    top:  10px;
+    font-size: 0.9rem;
+    padding: 5px;
+    transition: 0.3s;
+    color: #817e7e;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.note .bi-file-earmark-plus {
+    top: 40px;
+}
+
+.note .bi-x-lg:hover,
+.note .bi-file-earmark-plus:hover {
+    color: #ffffff;
+}
+
+.note.fixed {
+    background-color: #333342;
+}
