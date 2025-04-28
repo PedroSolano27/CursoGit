@@ -5,6 +5,8 @@ const addBtn = document.querySelector(".add-note");                             
 const pin = document.querySelector(".bi-pin");                                                          // Seletores
 const xmark = document.querySelector(".bi-x-lg");                                                       //
 const file = document.querySelector(".bi-file-earmark-plus");                                           //
+const searchInput = document.querySelector("#search-input");                                            //
+const exportBtn = document.querySelector("#export-btn");                                                //
 
 
 // Eventos 
@@ -17,6 +19,14 @@ document.addEventListener("keyup",function(e){                                  
         addBtn.dispatchEvent(new Event("click")); 
     }
 })
+
+searchInput.addEventListener("keyup", function(e){                                                      // Barra de Busca
+    searchNotes(e.target.value);
+});
+
+exportBtn.addEventListener("click", function(){                                                         // Botão de Exportar
+    exportNotes();
+});
 
 
 // Funções
@@ -127,6 +137,33 @@ function updateNote(id, newContent){                                            
 
     target.content = newContent;
     saveNote(notes);
+}
+
+function searchNotes(search){                                                                           // Procurar Notas
+    const results = getNotes().filter((note) =>{
+        return note.content.includes(search);
+    })
+
+    if(search === ""){ cleanNotes(); displayNotes(); return; }
+
+    cleanNotes();
+    results.forEach((note => {
+        const noteElement = addNote(note.id, note.content);
+    }))
+}
+
+function exportNotes(){                                                                                 // Exportar Notas
+    const notes = getNotes();
+    const csv = [
+        ["ID", "Conteudo", "Fixado"],
+        ...notes.map((note) => [note.id, note.content, note.fixed])
+    ].map((e) => e.join(";")).join("\n"); // O normal é ",", mas pra Excel tem que usar ";"
+
+    const element = document.createElement("a");
+    element.target = "_blank";
+    element.href = "data:text/csv;charset=utf-8,\uFEFF" + encodeURI(csv);
+    element.download = "Notes.csv";
+    element.click();
 }
 
 
