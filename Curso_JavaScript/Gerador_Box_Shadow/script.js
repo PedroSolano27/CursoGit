@@ -58,6 +58,31 @@ class BoxShadowGenerator {                                                      
             default: 
         }
     }
+    updateNum(type, value){                                                                 // Atualiza as regras por Píxel
+        switch(type){
+            case "horizontalRef": 
+                this.horizontal.value = value;
+                this.apply();
+                this.show(); 
+            break;
+            case "verticalRef": 
+                this.vertical.value = value;
+                this.apply();
+                this.show(); 
+            break;
+            case "blurRef": 
+                this.blur.value = value;
+                this.apply();
+                this.show(); 
+            break;
+            case "spreadRef": 
+                this.spread.value = value;
+                this.apply();
+                this.show(); 
+            break;
+            default: 
+        }
+    }
 }
 
 
@@ -82,16 +107,36 @@ horizontal.addEventListener("input", function(e){                               
     boxShadow.update("horizontal", e.target.value);
 });
 
+horizontalRef.addEventListener("input", function(e){                                        // Input de Píxel Horizontal
+    boxShadow.update("horizontal", e.target.value);
+    horizontal.value = e.target.value;
+});
+
 vertical.addEventListener("input", function(e){                                             // Slider Vertical
     boxShadow.update("vertical", e.target.value);
+});
+
+verticalRef.addEventListener("input", function(e){                                          // Input de Píxel Vertical
+    boxShadow.update("vertical", e.target.value);
+    vertical.value = e.target.value;
 });
 
 blur.addEventListener("input", function(e){                                                 // Slider de Blur
     boxShadow.update("blur", e.target.value);
 });
 
+blurRef.addEventListener("input", function(e){                                              // Input de Píxel de Blur
+    boxShadow.update("blur", e.target.value);
+    blur.value = e.target.value;
+});
+
 spread.addEventListener("input", function(e){                                               // Slider de Spread
     boxShadow.update("spread", e.target.value);
+});
+
+spreadRef.addEventListener("input", function(e){                                            // Input de Píxel de Spread
+    boxShadow.update("spread", e.target.value);
+    spread.value = e.target.value;
 });
 
 

@@ -84,9 +84,9 @@ h1, h2 {
     margin-left: 4px;
 }
 
-.form-control input[type="text"] {
+.form-control input[type="number"] {
     height: 30px;
-    width: 30px;
+    width: 40px;
     margin-left: 1rem;
     text-align: center;
 }
