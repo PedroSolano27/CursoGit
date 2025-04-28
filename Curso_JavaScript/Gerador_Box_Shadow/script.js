@@ -88,13 +88,13 @@ class BoxShadowGenerator {                                                      
 
 // Seleção
 const horizontal = document.querySelector("#horizontal");                                   //
-const horizontalRef = document.querySelector("#horizontal-value");                          //
+const horizontalRef = document.querySelector("#horizontal-val");                            //
 const vertical = document.querySelector("#vertical");                                       //
-const verticalRef = document.querySelector("#vertical-value");                              //
+const verticalRef = document.querySelector("#vertical-val");                                //
 const blur = document.querySelector("#blur");                                               //
-const blurRef = document.querySelector("#blur-value");                                      //
+const blurRef = document.querySelector("#blur-val");                                        //
 const spread = document.querySelector("#spread");                                           // Seletores
-const spreadRef = document.querySelector("#spread-value");                                  //
+const spreadRef = document.querySelector("#spread-val");                                    //
 const previewBox = document.querySelector("#box");                                          //
 const rule =document.querySelector("#rule span");                                           //
 const ruleWebkit =document.querySelector("#webkit-rule span");                              //
