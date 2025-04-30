@@ -18,11 +18,29 @@ function App() {
     const imcResult = (weightNum / (heightNum * heightNum)).toFixed(1);
 
     setImc(imcResult);
+    data.forEach(item => {
+      if(imcResult >= item.min && imcResult <= item.max){
+        setInfo(item.info);
+        setInfoClass(item.infoClass);
+      }
+    });
+
+    if (!info) return;
+  }
+  function cleanCalc (){                                              // Limpa a Calculadora
+    setImc("");
+    setInfo("");
+    setInfoClass("");
   }
 
   return (                                                            // Aplicativo
-    <div className="container">{!imc ? <Calc calculator={calcImc}/> : <Table/>}</div>
+    <div className="container">
+      {
+        !imc ? <Calc calculator={calcImc}/> :
+        <Table data={data} imc={imc} info={info} infoClass={infoClass} action={cleanCalc}/>
+      }
+    </div>
   );
 }
 
-export default App;
+export default App; 

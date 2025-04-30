@@ -16,12 +16,12 @@ function Calc({calculator}) {
     function handleWeight(e){                                               // Input de Peso
         setWeight(validDigits(e.target.value));
     };
-    function cleanForm(){                                                  // Limpar formulário
+    function cleanForm(){                                                   // Limpar formulário
         setHeight("");
         setWeight("");
     };    
 
-    return (                                                                // Retorna o HTML
+    return (                                                                //Inputs e Botões
         <section id="calc-container">
             <h2>Calculadora de IMC</h2>
             <form id="imc-form">
