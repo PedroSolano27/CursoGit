@@ -1,25 +1,46 @@
 //Aplicativo Principal
 import './App.css'
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { FiSend } from "react-icons/fi";
+import { useForm } from './hooks/useForm';
+import { useState } from 'react';
 import UserForm from './components/UserForm';
 import ReviewForm from './components/ReviewForm';
 import FinalForm from './components/FinalForm';
-import { useForm } from './hooks/useForm';
+import Steps from './components/Steps';
+
+const formTemplate ={
+  name: "",
+  email: "",
+  review: "",
+  comment: "",
+};
 
 function App() {
-  const formComponents = [<UserForm/>, <ReviewForm/>, <FinalForm/>];
+  const [data, setData] = useState(formTemplate);
+  const formComponents = [
+    <UserForm data={data} update={updateField} />,
+    <ReviewForm data={data} update={updateField} />,
+    <FinalForm data={data} />
+  ];
 
-  const {currentStep, currentComponent, changeStep} = useForm(formComponents);
+  const {currentStep, currentComponent, changeStep, isFirstStep, isLastStep} = useForm(formComponents);
+
+  function updateField(key, value){
+    setData((prev) => {
+      return {...prev, [key]: value };
+    });
+  }
 
   return (
     <>
       <header>
-        <h1>Formulário MultiStet</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci sunt inventore numquam, illo mollitia excepturi quod molestias? Cum praesentium sint rem, cupiditate quo necessitatibus omnis, commodi exercitationem, nobis natus atque!</p>
+        <h1>Formulário MultiStep</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci sunt inventore numquam, illo mollitia excepturi quod molestias.</p>
       </header>
 
       <main className="form-container">
-      <p>Etapas</p>
+      <Steps currentStep={currentStep} />
       <form onSubmit={(e) => {changeStep(currentStep + 1, e)}}>
 
         <section className="inputs">
@@ -27,8 +48,15 @@ function App() {
         </section>
 
         <section className="actions">
-          <button type="button" onClick={(e) => {changeStep(currentStep - 1, e)}}><GrFormPrevious/><span>Voltar</span></button>
-          <button type="submit"><span>Avançar</span><GrFormNext/></button>
+          {!isFirstStep() && (
+              <button type="button" onClick={(e) => {changeStep(currentStep - 1, e)}}><GrFormPrevious/><span>Voltar</span></button>
+            )}
+
+          {!isLastStep() ? ( 
+              <button type="submit"><span>Avançar</span><GrFormNext/></button>
+            ) : (
+              <button type="button"><span>Enviar</span><FiSend/></button>
+            )}
         </section>
 
       </form>
