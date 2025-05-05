@@ -2,27 +2,50 @@
 // Contexto do Quiz para a Aplicação
 import { createContext } from "react";
 import { useReducer } from "react";
-import questions from "../data/questions";
+import questions from "../data/questions_complete";
 
-const Stages = ["Start", "Playing", "Finish"];                      // Array com os estágios do Quiz
+const Stages = ["Start", "Category", "Playing", "Finish"];          // Array com os estágios do Quiz
 const initialState = {                                              // Estágio inicial do Quiz
-    gameStage: Stages[0],
-    questions,
-    currentQuestion: 0,
-    score: 0,
-    answered: false
+    gameStage: Stages[0],   // Página Atual
+    questions,              // Questões do Quiz
+    currentQuestion: 0,     // Questão Atual
+    removedOption: null,    // Opção Removida
+    score: 0,               // Número de Respostas Corretas
+    canTip: 2,              // Número de Dicas Disponíveis
+    canRemove: 2,           // Número de Remoções Disponíveis
+    help: false,            // Se Ajuda está em Efeito
+    answered: false         // Se a Questão foi Respondida
 }
 
 function quizReducer(state, action){                                // Reducer do Quiz
     switch(action.type){
         case "Change_State": {                                      // Muda o Estado
-            return {...state, gameStage: Stages [1]};
+            return {
+                ...state, 
+                gameStage: Stages [1]
+            };
         }    
         
+        case "Start_Quiz": {                                        // Inicia o questionário
+            let quizQuestions = null;
+            state.questions.forEach((question) =>{
+                if(question.category === action.payload){
+                    quizQuestions = question.questions;
+                }
+            });
+
+            return {
+                ...state,
+                gameStage: Stages[2],
+                questions: quizQuestions,
+            };
+        }
+
         case "Reorder":  {                                          // Embaralha as questões
-            const reorderedQuestions = questions.sort(()=> {
+            const reorderedQuestions = state.questions.sort(()=> {
                 return Math.random() - 0.5;
             });
+
             return {...state, questions: reorderedQuestions}; 
         }
 
@@ -30,12 +53,49 @@ function quizReducer(state, action){                                // Reducer d
             const nextQuestion = state.currentQuestion + 1;
             let endGame = false;
             
-            if(!questions[nextQuestion]){ endGame = true }
+            if(!state.questions[nextQuestion]){ endGame = true }
             return {
                 ...state, 
+                gameStage: endGame ? Stages[3]: state.gameStage,
                 currentQuestion: nextQuestion, 
-                gameStage: endGame ? Stages[2]: state.gameStage,
-                answered: false
+                help: false,
+                answered: false,
+            };
+        }
+
+        case "Show_Tip": {                                          // Mostra Dicas
+            if(state.canTip <= 0 || state.help === true){
+                return state;
+            }
+           
+            return {
+                ...state,
+                canTip: state.canTip -1,
+                help: "tip",
+            };
+        }
+
+        case "Remove_Option": {                                     // Remove uma Opção Incorreta
+            if(state.canRemove <= 0 || state.help === true){
+                return state;
+            }
+
+            const question = state.questions[state.currentQuestion];
+            let optionToRemove;
+            let remove = true;
+
+            question.options.forEach((option) =>{
+                if(option !== question.answer && remove){
+                    optionToRemove = option;
+                    remove = false;
+                }
+            });
+            
+            return {
+                ...state,
+                removedOption: optionToRemove,
+                canRemove: state.canRemove -1,
+                help: "remove",
             };
         }
 

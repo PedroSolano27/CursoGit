@@ -22,3 +22,7 @@
 .incorrect {
     opacity: 0.4;
 }
+
+.removed {
+    display: none;
+}

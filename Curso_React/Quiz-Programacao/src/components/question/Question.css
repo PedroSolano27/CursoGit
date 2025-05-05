@@ -3,7 +3,6 @@
 #question {
     text-align: center;
     width: 500px;
-    height: 600px;
     padding: 2rem;
     background-color: #8435de;
     border-radius: 1rem;
@@ -19,5 +18,5 @@
 
 #question button {
     border: 1px solid #ffffff;
-    margin-top: 1.5rem;
+    margin: 1.5rem;
 }

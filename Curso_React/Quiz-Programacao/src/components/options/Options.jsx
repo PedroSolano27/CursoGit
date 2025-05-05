@@ -17,7 +17,8 @@ function Options() {
     return (
         <section id="options-container">
             {currentQuestion.options.map((option) => (
-                <p  className={`option 
+                <p  className={`option
+                    ${quizState.removedOption === option ? "removed" : ""} 
                     ${quizState.answered && option === currentQuestion.answer ? "correct" : ""}
                     ${quizState.answered && option !== currentQuestion.answer ? "incorrect" : ""}
                     `} 
