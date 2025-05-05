@@ -6,7 +6,7 @@ import image from "../../assets/quiz.svg";
 
 function Welcome() {
     const [quizState, dispatch] = useContext(QuizContext);             // Contexto do Quiz
-    console.log(quizState);
+    quizState;  //Para tirar aquele erro chato que o VS Code tem, isso não faz nada
     
     return (
         <section id="welcome">

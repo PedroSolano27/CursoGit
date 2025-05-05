@@ -1,10 +1,10 @@
 // Programa Principal
-import { useContext } from "react";
-import { useEffect } from "react";
-import { QuizContext } from "./context/Quiz";
 import "./App.css";
+import { useContext, useEffect } from "react";
+import { QuizContext } from "./context/Quiz";
 import Welcome from "./components/welcome/Welcome";
-import Question from "./components/question/question";
+import Question from "./components/question/Question";
+import Finish from "./components/finish/Finish";
 
 function App() {
   const [quizState, dispatch] = useContext(QuizContext);          // Contexto do Quiz
@@ -22,7 +22,7 @@ function App() {
       <main>
         {quizState.gameStage === "Start" && <Welcome/>}
         {quizState.gameStage === "Playing" && <Question/>}
-        {quizState.gameStage === "Finish" && <Welcome/>}
+        {quizState.gameStage === "Finish" && <Finish/>}
       </main>
     </div>
   );
