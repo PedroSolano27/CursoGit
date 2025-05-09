@@ -3,8 +3,7 @@ import Party from "../models/Party.js";
 const { PartyModel } = Party;
 
 function checkPartyBudget(budget, services) {   // Verifica se o orçamento é suficiente
-    const priceSum = services.reduce((sum, service)=> sum + service.price);
-    
+    const priceSum = services.reduce((sum, service)=> sum + service.price, 0);
     if(priceSum > budget) {return false;}
     return true;
 }

@@ -1,6 +1,6 @@
 // Centralizador das rotas do Service e Party
 import { Router } from "express";
-import serviceRouter from "./partyRouter.js";
+import serviceRouter from "./serviceRouter.js";
 import partyRouter from "./partyRouter.js";
 
 const router = Router();

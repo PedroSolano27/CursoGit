@@ -4,10 +4,10 @@ POST http://localhost:3000/api/services
 Content-Type: application/json
 
 {
-    "name": "Serviço de Teste",
-    "description": "Descrição de Teste",
-    "price": 1500,
-    "image": "https://preview.redd.it/blackbeard-writing-his-heresy-v0-3ijx4fmucmtb1.jpg?auto=webp&s=616b4856e3513db15dca2a5d375e4d4d41b47708"
+    "name": "Open Bar",
+    "description": "Todas as bebidas servidas de forma gratuita para os seus convidados.",
+    "price": 2000,
+    "image": "https://images.unsplash.com/photo-1617752357354-e2fb98083392?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80"
 }
 
 ###
@@ -45,7 +45,7 @@ Content-Type: application/json
     "title": "Evento de teste com Serviços",
     "author": "Pedro Solano",
     "description": "Evento sendo criado para Testes",
-    "budget": 6000,
+    "budget": 3000,
     "image": "imagem-de-teste.jpg",
     "services": [
         {
