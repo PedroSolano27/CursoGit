@@ -1,6 +1,6 @@
 // Página de memória
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Memory.css";
 import memoryFetch from "../../axios-config";
 import useToast from "../../hook/useToast.jsx";
@@ -12,6 +12,7 @@ function Memory() {
 
   const { id } = useParams();
   const toast = useToast;
+  const navigate = useNavigate();
 
   useEffect(()=>{                               // Carrega a memória apenas uma vez
     async function getMemory() {
@@ -25,6 +26,16 @@ function Memory() {
 
   function handleChange(e){                     // Gerencia as mudanças de valor
     setInputs({...inputs, [e.target.id]: e.target.value});
+  }
+
+  async function deleteMemory() {               // Deleta a Memória
+    try {
+
+      const response = await memoryFetch.delete(`/memories/${id}`);
+      toast(response.data.msg);
+      navigate("/");
+
+    } catch (error) { toast(error.response.data.msg, "error"); }
   }
 
   async function addComment(e) {                // Adiciona um comentário
@@ -43,6 +54,10 @@ function Memory() {
     } catch (error) { toast(error.response.data.msg, "error"); }
   }
 
+  async function deleteComment(commentId) {     // Deleta comentário
+    console.log(`Deletando comentário ${commentId}`);
+  }
+
   return (
     <section id="memory-page">
       <h2>Detalhes da memória "{memory.title}"</h2>
@@ -51,6 +66,7 @@ function Memory() {
         <img src={`${memoryFetch.defaults.baseURL}${memory.src}`} alt={memory.title} />
         <h3>{memory.title}</h3>
         <p>{memory.description}</p>
+        <button className="btn delete-btn" onClick={()=>deleteMemory()}>Deletar</button>
       </section>
 
       <section id="comment-form">
@@ -80,7 +96,10 @@ function Memory() {
         {comments.length === 0 && <p>Nenhum comentário...</p>}
         {comments.length > 0 && comments.map((comment)=>(
           <section className="comment" key={comment._id} >
-            <p className="comment-name" >{comment.name}</p>
+            <p className="comment-name" 
+              onClick={()=>deleteComment(comment.name, comment.text, comment._id)}
+            >{comment.name}</p>
+
             <p className="comment-text">{comment.text}</p>
           </section>
         ))}

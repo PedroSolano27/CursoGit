@@ -1,5 +1,5 @@
 const express = require("express");
-const { createMemory, getMemories, getMemory, deleteMemory, updateMemory, toggleFavorite, addComment } = require("../controllers/MemoryController");
+const { createMemory, getMemories, getMemory, deleteMemory, updateMemory, addComment, updateComment, deleteComment } = require("../controllers/MemoryController");
 const upload = require("../config/Uploads.js");
 
 const router = express.Router();
@@ -32,12 +32,12 @@ router.patch(   // Edita memória por Id
     upload.single("image"),
     (req, res) => updateMemory(req, res)
 );
-router.patch(   // Adiciona ou retira memória dos favoritos
-    "/favorite/:id",
-    (req, res) => toggleFavorite(req, res)
-);
 router.patch(   // Adiciona comentário
     "/:id/comment",
     (req, res) => addComment(req, res)
+);
+router.delete(  // Remove comentário
+    "/:id/comment/:id",
+    (req, res) => deleteComment(req, res)
 );
 module.exports = router;

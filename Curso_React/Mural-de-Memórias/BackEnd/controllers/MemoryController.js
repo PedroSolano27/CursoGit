@@ -96,22 +96,6 @@ async function updateMemory(req, res) {
     }
 }
 
-async function toggleFavorite(req, res) {
-    try {
-        
-        const memory = await Memory.findById(req.params.id);
-        if(!memory){ return res.status(404).json({msg: "Memória não encontrada"}) }
-        
-        memory.favorite = !memory.favorite;
-        await memory.save();
-        res.json({msg: "Memória favoritada com sucesso", memory});
-        
-    } catch (error) { 
-        console.log(error.message);
-        res.status(500).send("Ocorreu um erro...");
-    }
-}
-
 async function addComment(req, res) {
     try {
         const {name, text} = req.body
@@ -134,8 +118,10 @@ async function addComment(req, res) {
     }
 }
 
+async function deleteComment(req, res) {
+}
+
 module.exports = {
     createMemory, getMemories, getMemory, deleteMemory, updateMemory, 
-    toggleFavorite,
-    addComment,
+    addComment, deleteComment
 };

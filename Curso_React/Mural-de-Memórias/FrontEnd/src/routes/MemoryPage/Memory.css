@@ -32,7 +32,8 @@
     color: #1146a6;
 }
 
-#memory-container p {
+.delete-btn {
+    background-color: #af2c2c;
     margin-bottom: 2rem;
 }
 
