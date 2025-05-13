@@ -1,5 +1,5 @@
 const express = require("express");
-const { createMemory, getMemories, getMemory, deleteMemory, updateMemory, addComment, updateComment, deleteComment } = require("../controllers/MemoryController");
+const { createMemory, getMemories, getMemory, deleteMemory, updateMemory, addComment, deleteComment } = require("../controllers/MemoryController");
 const upload = require("../config/Uploads.js");
 
 const router = express.Router();
@@ -37,7 +37,7 @@ router.patch(   // Adiciona comentário
     (req, res) => addComment(req, res)
 );
 router.delete(  // Remove comentário
-    "/:id/comment/:id",
+    "/:id/comment/:commentId",
     (req, res) => deleteComment(req, res)
 );
 module.exports = router;

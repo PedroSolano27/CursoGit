@@ -1,6 +1,6 @@
 // Página de memória
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./Memory.css";
 import memoryFetch from "../../axios-config";
 import useToast from "../../hook/useToast.jsx";
@@ -55,7 +55,15 @@ function Memory() {
   }
 
   async function deleteComment(commentId) {     // Deleta comentário
-    console.log(`Deletando comentário ${commentId}`);
+    try {
+      
+      const response = await memoryFetch.delete(`/memories/${id}/comment/${commentId}`);
+      const filteredComments = comments.filter((comment)=> comment._id !== commentId);
+      setComments(filteredComments);
+
+      toast(response.data.msg);
+
+    } catch (error) { toast(error.response.data.msg, "error"); }
   }
 
   return (
@@ -66,7 +74,10 @@ function Memory() {
         <img src={`${memoryFetch.defaults.baseURL}${memory.src}`} alt={memory.title} />
         <h3>{memory.title}</h3>
         <p>{memory.description}</p>
-        <button className="btn delete-btn" onClick={()=>deleteMemory()}>Deletar</button>
+        <section id="actions">
+          <Link to={`/memory/${id}/edit`} className="btn">Editar</Link>
+          <Link className="btn delete-btn" onClick={()=>deleteMemory()}>Excluir</Link>
+        </section>
       </section>
 
       <section id="comment-form">
@@ -96,11 +107,11 @@ function Memory() {
         {comments.length === 0 && <p>Nenhum comentário...</p>}
         {comments.length > 0 && comments.map((comment)=>(
           <section className="comment" key={comment._id} >
-            <p className="comment-name" 
-              onClick={()=>deleteComment(comment.name, comment.text, comment._id)}
-            >{comment.name}</p>
-
-            <p className="comment-text">{comment.text}</p>
+            <section>
+              <p className="comment-name" >{comment.name}</p>
+              <p className="comment-text">{comment.text}</p>
+            </section>
+            <button className="btn delete-btn" onClick={()=>deleteComment(comment._id)}>Excluir</button>
           </section>
         ))}
       </section>

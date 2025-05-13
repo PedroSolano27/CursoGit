@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Home from "./routes/HomePage/Home.jsx";
 import Memory from "./routes/MemoryPage/Memory.jsx";
 import AddMemory from "./routes/AddMemoryPage/AddMemory.jsx";
+import EditMemory from "./routes/EditMemoryPage/EditMemory.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/memory/new",
         element: <AddMemory/>
+      },
+      {
+        path: "/memory/:id/edit",
+        element: <EditMemory/>
       },
     ]
   }

@@ -119,6 +119,25 @@ async function addComment(req, res) {
 }
 
 async function deleteComment(req, res) {
+    try {
+        
+        const { id, commentId } = req.params;
+
+        const memory = await Memory.findById(id);
+        if (!memory) { return res.status(404).json({ msg: "Memória não encontrada" }); }
+
+        const commentIndex = memory.comments.findIndex(comment => comment._id.toString() === commentId);
+        if (commentIndex === -1) { return res.status(404).json({ msg: "Comentário não encontrado" }); }
+
+        memory.comments.splice(commentIndex, 1);
+        await memory.save();
+
+        res.json({ msg: "Comentário deletado com sucesso", memory });
+
+    } catch (error) { 
+        console.log(error.message);
+        res.status(500).send("Ocorreu um erro...");
+    }
 }
 
 module.exports = {

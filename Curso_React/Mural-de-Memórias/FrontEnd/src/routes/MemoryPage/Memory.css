@@ -19,6 +19,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 #memory-container img {
@@ -32,9 +33,15 @@
     color: #1146a6;
 }
 
+#actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+}
+
 .delete-btn {
     background-color: #af2c2c;
-    margin-bottom: 2rem;
 }
 
 #comment-form {
@@ -57,9 +64,18 @@
     border-bottom: 1px solid #cccccc;
     margin: 1rem 0;
     padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .comment-name {
     font-weight: bold;
     color: #555555;
+}
+
+.comment .delete-btn {
+    font-size: 0.7rem;
+    height: 30px;
+    padding: 0 0.5rem;
 }
